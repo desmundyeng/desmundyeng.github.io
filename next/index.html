@@ -1,1 +1,26 @@
-Sample html
+<html>
+<head>
+</head>
+
+<script>
+    const loadData = () => {
+        const frame = document.getElementById("frame-id");
+        frame.contentWindow.postMessage({call: 'iframe_message', value: 'sample value'}, '*');
+        console.log("change text complete")
+    };
+
+    window.document.addEventListener('readystatechange', () => {
+            if (window.document.readyState === 'complete') {
+                loadData();
+            }
+        }
+    );
+</script>
+
+<body>
+    <label for='input'></label><input id='input' type="text">
+    <input onclick="loadData()" type="button" value="Change"/>
+    <iframe height="200" id="frame-id" src="https://desmundyeng.github.io/next/web/#/" style="border:0; border-radius: 10px;" width="300"></iframe>
+</body>
+
+</html>
