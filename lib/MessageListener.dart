@@ -12,7 +12,7 @@ import 'package:simple_cookies/simple_cookies.dart';
   }
 
 class _MessageListenerState extends State<MessageListener> {
-  String last = '';
+  String last = 'No messages yet';
 
   @override
   void initState() {
@@ -38,7 +38,7 @@ class _MessageListenerState extends State<MessageListener> {
         title: const Text('iFrame Test'),
       ),
       body: Center(
-        child: SingleChildScrollView(child: Text(last ?? 'No messages yet')),
+        child: SingleChildScrollView(child: Text(last)),
       ),
     );
   }
