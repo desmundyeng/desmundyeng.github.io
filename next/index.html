@@ -23,6 +23,7 @@
         let messageButton = window.document.getElementById("post_message");
         messageButton.addEventListener("click", () => {
             let message = window.document.getElementById("message_text").value;
+            console.log('message :' + message)
             window.localStorage.setItem("iframe_message", message);
             document.getElementById('flutter_widget').contentWindow.postMessage(
                 {
@@ -35,7 +36,7 @@
     }
 
     window.document.addEventListener('readystatechange', () => {
-            if (window.document.readyState == 'complete') {
+            if (window.document.readyState === 'complete') {
                 pageProcessing();
             }
         }
