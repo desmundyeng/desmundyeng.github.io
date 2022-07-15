@@ -33,13 +33,9 @@ class _MessageListenerState extends State<MessageListener> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: const Text('iFrame Test'),
-      ),
-      body: Center(
-        child: SingleChildScrollView(child: Text(last)),
-      ),
+    return  Text(
+      last,
+      style: Theme.of(context).textTheme.headline4,
     );
   }
 }
