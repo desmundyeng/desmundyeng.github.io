@@ -2,16 +2,41 @@
 <head>
 </head>
 
-<script>
-    const loadData = () => {
-        const frame = document.getElementById("frame-id");
-        frame.contentWindow.postMessage({call: 'iframe_message', value: 'sample value'}, '*');
-        console.log("change text complete")
-    };
+<!--<script>-->
+<!--    const loadData = () => {-->
+<!--        const frame = document.getElementById("frame-id");-->
+<!--        frame.contentWindow.postMessage({call: 'iframe_message', value: 'sample value'}, '*');-->
+<!--        console.log("change text complete")-->
+<!--    };-->
+
+<!--    // window.document.addEventListener('readystatechange', () => {-->
+<!--    //         if (window.document.readyState === 'complete') {-->
+<!--    //             loadData();-->
+<!--    //         }-->
+<!--    //     }-->
+<!--    // );-->
+<!--</script>-->
+
+
+<script type="text/javascript">
+    function pageProcessing() {
+        let messageButton = window.document.getElementById("post_message");
+        messageButton.addEventListener("click", () => {
+            let message = window.document.getElementById("message_text").value;
+            window.localStorage.setItem("iframe_message", message);
+            document.getElementById('flutter_widget').contentWindow.postMessage(
+                {
+                    sender: "main_page",
+                    message: message
+                },
+                "*"
+            );
+        });
+    }
 
     window.document.addEventListener('readystatechange', () => {
-            if (window.document.readyState === 'complete') {
-                loadData();
+            if (window.document.readyState == 'complete') {
+                pageProcessing();
             }
         }
     );
@@ -19,12 +44,12 @@
 
 <body>
     <a>
-        <label for='input'></label><input id='input' type="text">
+        <input id="message_text" type="text">&nbsp;<input id="post_message" type="button" value="Send Message">
         <input onclick="loadData()" type="button" value="Change"/>
     </a>
-    </br>
+    <br/>
     <a>
-        <iframe height="200" id="frame-id" src="https://desmundyeng.github.io/next/web/#/" style="border:0; border-radius: 10px;" width="400"></iframe>
+        <iframe height="200" id="flutter_widget" src="https://desmundyeng.github.io/next/web/#/" style="border:0; border-radius: 10px;" width="400"></iframe>
     </a>
 </body>
 

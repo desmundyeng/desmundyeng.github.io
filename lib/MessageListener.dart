@@ -3,13 +3,12 @@ import 'dart:html' as html;
 import 'package:flutter/material.dart';
 import 'package:simple_cookies/simple_cookies.dart';
 
-
- class MessageListener extends StatefulWidget {
+class MessageListener extends StatefulWidget {
   const MessageListener({Key? key}) : super(key: key);
 
-      @override
-      _MessageListenerState createState() => _MessageListenerState();
-  }
+  @override
+  _MessageListenerState createState() => _MessageListenerState();
+}
 
 class _MessageListenerState extends State<MessageListener> {
   String last = 'No messages yet';
@@ -33,9 +32,6 @@ class _MessageListenerState extends State<MessageListener> {
 
   @override
   Widget build(BuildContext context) {
-    return  Text(
-      last,
-      style: Theme.of(context).textTheme.headline4,
-    );
+    return Text(last);
   }
 }
